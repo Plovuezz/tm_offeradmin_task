@@ -1,10 +1,7 @@
 from typing import List, Optional
 from uuid import UUID
-from pydantic import BaseModel, field_validator
-from pydantic.functional_validators import model_validator
-from pydantic_core.core_schema import FieldValidationInfo
-from models.models import OfferChoices
-from models.models import Offer, OfferWallOffer, OfferWallPopupOffer, OfferWall
+from pydantic import BaseModel
+from database.models import OfferChoices
 
 
 class OfferSchema(BaseModel):
@@ -14,12 +11,12 @@ class OfferSchema(BaseModel):
 
     uuid: UUID
     id: int
-    url: Optional[str] = None
+    url: str | None = None
     is_active: bool
     name: OfferChoices
-    sum_to: Optional[str] = None
-    term_to: Optional[int] = None
-    percent_rate: Optional[int] = None
+    sum_to: str | None = None
+    term_to: str | None = None
+    percent_rate: str | None = None
 
 
 class OfferWallOfferSchema(BaseModel):

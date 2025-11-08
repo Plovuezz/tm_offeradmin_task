@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     DB_HOST_DEV: str
     DB_PORT_DEV: int
 
+    APP_HOST: str = "0.0.0.0"
+    APP_PORT: int = 5000
+
     @property
     def DB_URL(self) -> str:
         if self.DEBUG == 1:

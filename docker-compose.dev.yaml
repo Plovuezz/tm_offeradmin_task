@@ -33,6 +33,22 @@ services:
       - "8000:8000"
     restart: unless-stopped
 
+  litestar:
+    build:
+      context: ./litestar_service
+      dockerfile: Dockerfile
+    container_name: litestar
+    volumes:
+      - ./litestar_service:/usr/src/litestar_service
+    depends_on:
+      - postgres
+    env_file:
+    - ./.env
+    ports:
+      - "5000:5000"
+    command: ["python", "__main__.py"]
+    restart: unless-stopped
+
   nginx:
     build: ./nginx/conf
     container_name: nginx
@@ -46,4 +62,5 @@ services:
       - '80:80'
     depends_on:
       - admin_panel
+      - litestar
     restart: unless-stopped

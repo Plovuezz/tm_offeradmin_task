@@ -3,7 +3,11 @@ from enum import Enum
 from sqlalchemy import Column, String, Boolean, Integer, Text, ForeignKey, UniqueConstraint
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
-from base import Base
+from sqlalchemy.orm import DeclarativeBase
+
+
+class Base(DeclarativeBase):
+    pass
 
 
 class OfferChoices(str, Enum):
